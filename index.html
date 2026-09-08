@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Luau Mobile Studio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="app">
+    <header id="app-header">
+      <div class="header-left">
+        <button id="btn-menu" class="icon-btn"><i data-lucide="menu"></i></button>
+        <span id="current-file-title">print.luau</span>
+      </div>
+      <div class="header-right">
+        <button id="btn-undo" class="icon-btn"><i data-lucide="undo-2"></i></button>
+        <button id="btn-redo" class="icon-btn"><i data-lucide="redo-2"></i></button>
+        <div class="separator"></div>
+        <button id="btn-copy" class="btn-primary">
+          <i data-lucide="copy"></i>
+          <span>Copiar</span>
+        </button>
+        <button id="btn-settings" class="icon-btn"><i data-lucide="settings"></i></button>
+      </div>
+    </header>
+
+    <nav id="tabs-bar"></nav>
+
+    <div id="workspace">
+      <aside id="sidebar">
+        <div class="sidebar-header">
+          <span class="sidebar-title">
+            <i data-lucide="folder-code"></i> Scripts Luau
+          </span>
+          <button id="btn-new-file" class="icon-btn-blue"><i data-lucide="plus"></i></button>
+        </div>
+        <div id="file-list"></div>
+        <div class="sidebar-footer">Luau Studio v2.3</div>
+      </aside>
+
+      <div id="sidebar-overlay"></div>
+
+      <main id="editor-container">
+        <textarea id="code-editor"></textarea>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal Customizado para Criar Arquivo (Sem o prompt branco) -->
+  <div id="new-file-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i data-lucide="file-plus"></i> Novo Script Luau</h3>
+        <button id="close-new-file" class="icon-btn"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="setting-item">
+          <label>Nome do arquivo:</label>
+          <input type="text" id="new-file-name-input" value="script.luau" autocomplete="off">
+        </div>
+      </div>
+      <div class="modal-footer-actions">
+        <button id="btn-cancel-new" class="btn-secondary">Cancelar</button>
+        <button id="btn-confirm-new" class="btn-primary">Criar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Configurações / Exclusão -->
+  <div id="settings-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i data-lucide="settings"></i> Configurações</h3>
+        <button id="close-settings" class="icon-btn"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="setting-item">
+          <label>Tamanho da Fonte: <span id="font-size-val">15px</span></label>
+          <input type="range" id="font-size-range" min="10" max="24" value="15">
+        </div>
+        <div class="setting-item-row">
+          <span>Numeração de Linhas</span>
+          <input type="checkbox" id="linenumbers-toggle" checked>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-delete-current" class="btn-danger">
+          <i data-lucide="trash-2"></i> Excluir Arquivo Atual
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/lua/lua.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
